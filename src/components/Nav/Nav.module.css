@@ -1,0 +1,19 @@
+.nav{
+    background-color: #0DA5F2;
+    color: black;
+    padding: 1em;
+    font-size: 1.5rem;
+    position: fixed;
+    width: 100%;
+}
+.navContainer{
+    display: flex;
+    justify-content: space-between;
+  
+}
+.ul{
+    display: flex;
+    gap: 1em;
+    cursor: pointer;
+    list-style-type: none;
+}
