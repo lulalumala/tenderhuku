@@ -1,37 +1,30 @@
-.div{
-border: 1px solid #F25A0D;
-    padding: 3em;
-    cursor: pointer;
-    border-radius: 5px;
-    
+.div {
+  background-color: var(--smoke);
+  border: 1px solid var(--secondary-color);
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+  border-radius: 5px;
 }
-.topcategories{
-    padding: 1.5em 0em;
+.div:hover{
+    transform: scale(1.1);
+    transition: all .5s ease;
 }
-.categories{
-    margin-top: 1em;
-    display: flex;
-    justify-content: space-around;
+.topcategories {
+  padding: 1.5em 0em;
 }
-.top{
-    margin-top: 5em;
-    text-align: center;
-}
-.input{
-    padding: 1.5em;
-    font-size: 1rem;
-    border: none;
-    outline:none;
-    width: 95%;
-}
-.search{
-    display: flex;
-    align-items: center;
-    border: 2px solid black;
-    width: 60%;
-    margin:1em auto ;
+.categories {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-around;
 }
 .icon{
-    font-size: 2.5em;
-    cursor: pointer;
+    color:var(--secondary-color)
 }
+.top {
+color: var(--primary-color);  
+text-align: center;
+}
+

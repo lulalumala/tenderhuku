@@ -1,21 +1,22 @@
 import styles from './Categories.module.css'
-import SearchIcon from '@mui/icons-material/Search';
+import BusinessCenterRoundedIcon from '@mui/icons-material/BusinessCenterRounded';
+import FactoryIcon from '@mui/icons-material/Factory';
+import SchoolIcon from '@mui/icons-material/School';
+import ComputerIcon from '@mui/icons-material/Computer';
+import GavelIcon from '@mui/icons-material/Gavel';
 
 const Categories = () => {
     return (
         <div className={styles.topcategories}>
             <h2 className={styles.top}>Top Categories</h2>
             <div className={styles.categories} >
-                <div className={styles.div}><p>Manufacturing</p> </div>
-                <div className={styles.div}><p>Consultancy</p></div>
-                <div className={styles.div}><p>Educational</p></div>
-                <div className={styles.div}><p>Technology</p></div>
-                <div className={styles.div}><p>Government</p></div>
+                <div className={styles.div}><FactoryIcon className={styles.icon} /><p> Manufacturing</p> </div>
+                <div className={styles.div}><BusinessCenterRoundedIcon className={styles.icon}/> <p>Consultancy</p></div>
+                <div className={styles.div}><SchoolIcon className={styles.icon}/><p> Educational</p></div>
+                <div className={styles.div}><ComputerIcon className={styles.icon}/> <p>Technology</p></div>
+                <div className={styles.div}><GavelIcon className={styles.icon}/> <p>Government</p></div>
             </div>
-            <div className={styles.search} >
-                <input className={styles.input} placeholder='search' />
-                <SearchIcon className={styles.icon } />
-            </div>
+    
         </div>
     )
 }

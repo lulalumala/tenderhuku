@@ -1,0 +1,56 @@
+.curve {
+  width: 100vw;
+  height: 50vh;
+  background-image: url("../pages/contactbg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+.img {
+  width: 100%;
+}
+.aboutdiv {
+  width: 40%;
+}
+.aboutim {
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+  border-radius: 50%;
+  background-color: inherit;
+}
+.aboutpic {
+  width: 250px;
+  height: 250px;
+  border-radius: 50px;
+}
+.whyus {
+  text-align: center;
+  width: 100%;
+  /* margin-top: -210px; */
+}
+.pickus {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+.pickdiv {
+  padding: 2em;
+  box-shadow: 0 0 5px gray;
+}
+.bottomcurve {
+  width: 100%;
+  height: 20vh;
+  background-image: url("../pages/contactbg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* colors 
+kablue flani #0DA5F2;
+kaorange #F25A0D;
+ */

@@ -1,32 +1,71 @@
 .main{
-    text-align: center;
+  background-color: var(--smoke);
+  padding: 1.5em 0;
+}
+
+.h2 {
+  text-align: center;
+  color: var(--primary-color);
 }
 
 .main80 {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  gap: 1em;
   flex-wrap: wrap;
-  /* background-color: #F25A0D; */
+  justify-content: center;
+  gap: 1.5em;
+  flex-wrap: wrap;
   padding: 1em;
-  height: 60vh;
+  /* height: 60vh; */
 }
-
+.p {
+color: var(--black);
+  margin: 0.4em 0em;
+}
 .button {
-  /* background-color: #F25A0D; */
+  background-color: var(--secondary-color);
   display: block;
   margin: auto;
   padding: 1em 2.5em;
+  font-weight: bold;
   font-size: 1rem;
+  color: var(--white);
   cursor: pointer;
+  border: none;
+  outline: none;
+  width: 100%;
 }
 
 .maincard {
   padding: 1em;
   width: 22%;
-  height: 20vh;
-  border: 1px solid black;
-  /* background-color: #0DA5F2; */
+  border: none;
+  border-radius: 3px;
+  /* background-color: #0da5f2; */
+  background-color: var(--white);
+}
+.maincard:hover {
+  transform: scale(1.1);
+  transition: all 0.5s ease;
+  box-shadow: 0 0 5px 0.5px var(--primary-color);
+}
+
+.all {
+  display: block;
+  margin: 2em auto;
+  padding: 1em 2.5em;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 30%;
+  background-color:var(--secondary-color);
+  color: var(--white);
+  border-radius: 5px;
+}
+.all:hover{
+  transform: scale(1.1);
+  transition: all .5s ease;
 }

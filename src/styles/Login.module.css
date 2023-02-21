@@ -1,0 +1,88 @@
+.pic {
+  height: 90vh;
+  width: 80vw;
+}
+.maindiv {
+  display: flex;
+  gap: 1.5em;
+}
+.input {
+  display: block;
+}
+.h2{
+  color: var(--primary-color)
+}
+.form {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  text-align: center;
+}
+.input {
+  font-size: 1.5rem;
+  padding: 0.25em;
+  border: none;
+  outline: none;
+}
+.user {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 5px gray;
+
+  /* border: 1px solid black; */
+  padding: 0.5em;
+  border-radius: 5px;
+}
+.password {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 5px gray;
+
+  /* border: 1px solid black; */
+  padding: 0.5em;
+  border-radius: 5px;
+}
+
+.box{
+  background: var(--primary-color);
+}
+.label{
+  font-size: 1.5rem;
+  margin-left: .5em;
+}
+
+.lbutton{
+    background-color: var(--secondary-color);
+    padding: 1em 2.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.sbutton{
+    background-color: var(--primary-color);
+    padding: 1em 2.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;  
+    cursor: pointer;
+}
+.button{
+  color: var(--white);
+}
+.button:hover{
+  transform: scale(1.05);
+  transition: all .5s ease;
+}
+.reset{
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.reset:hover{
+    text-decoration: underline;
+}
+/* colors
+kablue flani #0DA5F2;
+kaorange #F25A0D; */
