@@ -19,6 +19,9 @@
     gap: 1.5em;
     text-align: center;
   }
+  .errorText{
+    color: red;
+  }
   .input {
     font-size: 1.5rem;
     padding: 0.25em;
@@ -42,6 +45,19 @@
     padding: 0.5em;
     border-radius: 5px;
   }
+
+  .passwordcheck{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .success{
+    color: green;
+  }
+
+
+
+
   .h2{
     color:var(--primary-color) ;
   }
@@ -80,6 +96,12 @@
   }
   .reset:hover{
       text-decoration: underline;
+  }
+  .error{
+    border: 1px solid red;
+  }
+  .textError{
+    color: red;
   }
   /* colors
   kablue flani #0DA5F2;

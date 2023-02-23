@@ -10,7 +10,7 @@ const Nav = () => {
                 </div>
                 <div className={styles.menu} >
                     <ul className={styles.ul} >
-                       <Link href="/about"><li>About Tendarize</li></Link> 
+                       <Link href="/about"><li>About Us</li></Link> 
                         {/* <li>Apply for tender</li>
                         <li>Advertise tender</li> */}
                         <Link href="/login">      <li> Login </li></Link>

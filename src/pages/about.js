@@ -11,7 +11,9 @@ const About = () => {
             <div className={styles.curve}>
                 <div className={styles.aboutdiv} >
                     <h2>ABOUT US</h2>
-                    <p>Tendarize is a company located in Kenya with the aim of reducing paperworks and make it able to complete tender application as well as save documents online to make it easier to apply even further from home</p>
+                    <p>Tendarize is a start up company located in Kenya.
+                        We aim to make it easy for tender applications to both applicants and procurement entity, by providing a platform where such processess will be online.
+                    </p>
                 </div>
                 <div className={styles.aboutpic} >
                     <Image className={styles.aboutim} src={pic} alt='' />
@@ -21,10 +23,18 @@ const About = () => {
                 <h2>WHY US</h2>
                 <div className={styles.pickus} >
                     <div className={styles.pickdiv} >
-                     <h3>   Transparent</h3>
+                        <h3>   Transparent</h3>
+                        <p>All tenders whose company will use this platform will be posted online,
+                            and will be accessible to this page immediately they are published.</p>
                     </div>
-                    <div className={styles.pickdiv}>Time Saving</div>
-                    <div className={styles.pickdiv}>Fairness</div>
+                    <div className={styles.pickdiv}>
+                        <h3>Time Saving</h3>
+                        <p>Users will be able to fill their details, once they have completed filling their profiles, they will not have to be filling in again in forms</p>
+                    </div>
+                    <div className={styles.pickdiv}>
+                        <h3>Fairness</h3>
+                        <p>Equal opportunities will be provided to all.</p>
+                    </div>
                 </div>
             </div>
             <div className={styles.bottomcurve} >
