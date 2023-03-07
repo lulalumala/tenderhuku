@@ -10,7 +10,7 @@ const About = () => {
             <Nav />
             <div className={styles.curve}>
                 <div className={styles.aboutdiv} >
-                    <h2>ABOUT US</h2>
+                    <h2 className={styles.aboutus} >ABOUT US</h2>
                     <p>Tendarize is a start up company located in Kenya.
                         We aim to make it easy for tender applications to both applicants and procurement entity, by providing a platform where such processess will be online.
                     </p>

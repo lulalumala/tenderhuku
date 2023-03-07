@@ -1,14 +1,132 @@
 import styles from './Address.module.css'
+import { useState, useContext } from 'react'
+import { Context } from '@/states';
+
+
+// mui
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { async, jsonEval } from '@firebase/util';
 
 const Address = () => {
-    return (
-        <div>
-            <div className={styles.div} ><p>Postal Address</p> <input /></div>
-            <div className={styles.div} ><p>Postal Code</p> <input/></div>
-            <div className={styles.div} ><p>Physical Address</p> <input/></div>
-            <div className={styles.div} ><p>Telephone Number</p> <input/></div>
-            <div className={styles.div} ><p>Email Address</p> <input/></div>
+    const { user, showNext } = useContext(Context)
+    const [next, setNext] = showNext
+    const [currentUser, setcurrentUser] = user
+    const [addressDetails, setAddressDetails] = useState({
+        userEmail: currentUser,
+        address: {
+            postal: "",
+            code: "",
+            physical: "",
+            phone: "",
+            email: "",
+        }
 
+    })
+
+    const [text, setText] = useState("")
+
+    const nextButton = async () => {
+        if (!addressDetails.address.postal || !addressDetails.address.code || !addressDetails.address.physical || !addressDetails.address.phone || !addressDetails.address.email) {
+            return setText("Fill all details")
+        }
+
+        const fetchData = await fetch("http://localhost:3001/api/user/update", {
+            method: "PATCH",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(addressDetails)
+        })
+
+        const res = await fetchData.json()
+        console.log(res)
+        setNext(true)
+        console.log(addressDetails)
+    }
+
+
+    return (
+        <div className={`${styles.addressContainer}`} >
+            <h2 className={styles.h2} >ADDRESS</h2>
+            {console.log(currentUser)}
+            {console.log(next)}
+            {/* mui inputs */}
+            <div className={styles.flexAddress}>
+
+                <div>
+                    <p className={styles.error}>{text}</p>
+                    <Box
+                        className={styles.box}
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '40ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <div>
+                            <TextField
+                                className={styles.text}
+                                id="standard-password-input"
+                                label="Physical Address"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => (setAddressDetails(prev => ({ ...prev, address: { ...prev.address, physical: e.target.value } })))}
+                            />
+                        </div>
+
+                        <div>
+                            <TextField
+                                className={styles.text}
+                                id="standard-password-input"
+                                label="Postal Address"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => setAddressDetails(prev => ({ ...prev, address: { ...prev.address, postal: e.target.value } }))}
+
+                            />
+                        </div>
+
+                        <div>
+                            <TextField
+                                className={styles.text}
+                                id="standard-password-input"
+                                label="Postal Code"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => setAddressDetails(prev => ({ ...prev, address: { ...prev.address, code: e.target.value } }))}
+
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                className={styles.text}
+                                id="standard-password-input"
+                                label="Phone Number"
+                                type="text"
+                                variant="standard"
+                                onChange={(e) => setAddressDetails(prev => ({ ...prev, address: { ...prev.address, phone: e.target.value } }))}
+
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                className={styles.text}
+                                id="standard-password-input"
+                                label="Email"
+                                type="email"
+                                variant="standard"
+                                onChange={(e) => setAddressDetails(prev => ({ ...prev, address: { ...prev.address, email: e.target.value } }))}
+
+                            />
+                        </div>
+
+
+                    </Box>
+                </div>
+
+                <div>
+                    <button className={styles.button} onClick={() => console.log(addressDetails)} > NEXT</button></div>
+            </div>
         </div>
     )
 }

@@ -1,3 +1,23 @@
+.section{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: .5em auto;
+    border: 1px solid var(--primary-color);
+    padding: 1em;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.arrowdiv{
+    cursor: pointer;
+    width: fit-content;
+}
+.icon{
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
 .table{
     border: 1px solid black;
     border-collapse: collapse;

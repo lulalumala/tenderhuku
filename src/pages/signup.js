@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Nav from "@/components/Nav/Nav"
 import Image from "next/image"
 import styles from '../styles/Signup.module.css'
+import { useRouter } from 'next/router'
 
 
 // icons
@@ -16,7 +17,8 @@ import DoneIcon from '@mui/icons-material/Done';
 
 // pic
 import pic2 from '../pics/mikono.webp'
-import { SettingsInputComponent } from '@mui/icons-material';
+import { PostAdd, SettingsInputComponent } from '@mui/icons-material';
+import { redirect } from 'next/dist/server/api-utils'
 
 
 const Signup = () => {
@@ -30,6 +32,7 @@ const Signup = () => {
         password: "",
         confirmPassword: ""
     })
+    const router = useRouter()
     const [strong, setStrong] = useState({
         lowercase: false,
         uppercase: false,
@@ -83,10 +86,12 @@ const Signup = () => {
 
 
 
-    const create = (e) => {
+    const create = async (e) => {
         e.preventDefault()
+
+
         if (newUser.userName == "" || newUser.email == "" || newUser.password == "") {
-            setText("Please fill all details")
+            return setText("Please fill all details")
         }
 
         if (newUser.userName == "") {
@@ -100,16 +105,32 @@ const Signup = () => {
             setEmptyFields(prev => [...prev, "password"])
         }
         if ((!strong.lowercase) || (!strong.uppercase) || (!strong.length) || (!strong.num) || (!strong.specialChar)) {
-     setText("Enter a strong password")
- }
+            return setText("Enter a strong password")
+        }
 
-        newUser.password !== newUser.confirmPassword && setText("Passwords do not match")
 
-        !validatemail.test(newUser.email) && setText("Enter a valid email")
 
-        
+        if (newUser.password !== newUser.confirmPassword) { return setText("Passwords do not match") }
 
-        console.log(newUser)
+        if (!validatemail.test(newUser.email)) { return setText("Enter a valid email") }
+
+        const addUser = await fetch("http://localhost:3001/api/user/new", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newUser)
+        })
+
+        const jsonUser = await addUser.json()
+        if (jsonUser.userName) {
+            router.push("/login")
+            localStorage.setItem("currentUser", JSON.stringify(newUser.userName))
+
+            console.log(`You are reistered`)
+        }
+        if (!jsonUser.ok) {
+            setText(jsonUser.error)
+        }
+        console.log(jsonUser)
 
     }
 
@@ -121,17 +142,19 @@ const Signup = () => {
                 <form className={styles.form} >
                     <h2 className={styles.h2} >Sign Up</h2>
                     <p className={styles.errorText} >{text} </p>
-                    <div className={emptyFields.includes("email") ? `${styles.user} ${styles.error}` : styles.user} >
-                        <EmailIcon />
-                        <input className={styles.input} placeholder='Email' type='email'
-                            onChange={(e) => setNewUser(prev => ({ ...prev, email: e.target.value.trim() }))} />
-                    </div>
 
                     <div className={emptyFields.includes("username") ? `${styles.user} ${styles.error}` : styles.user} >
                         <Person2Icon />
                         <input className={styles.input} placeholder='Username' type='text'
                             onChange={(e) => setNewUser(prev => ({ ...prev, userName: e.target.value }))} />
                     </div>
+
+                    <div className={emptyFields.includes("email") ? `${styles.user} ${styles.error}` : styles.user} >
+                        <EmailIcon />
+                        <input className={styles.input} placeholder='Email' type='email'
+                            onChange={(e) => setNewUser(prev => ({ ...prev, email: e.target.value.trim() }))} />
+                    </div>
+
                     <div className={styles.password} >
                         <LockIcon />
                         <input className={styles.input} placeholder='Password' type={show ? 'text' : 'password'}

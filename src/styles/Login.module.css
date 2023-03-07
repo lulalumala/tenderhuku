@@ -52,6 +52,11 @@
   margin-left: .5em;
 }
 
+
+.error{
+  color: red;
+}
+
 .lbutton{
     background-color: var(--secondary-color);
     padding: 1em 2.5em;

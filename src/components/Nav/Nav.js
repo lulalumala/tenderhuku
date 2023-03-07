@@ -1,7 +1,20 @@
 import styles from './Nav.module.css'
 import Link from 'next/link'
+import { useContext, useEffect } from 'react'
+
+import { Context } from '@/states'
 
 const Nav = () => {
+    useEffect(() => {
+        const savedUser = localStorage.getItem("currentUser")
+        savedUser && setCurrentuser(JSON.parse(savedUser))
+        
+    }, [])
+    
+    const context = useContext(Context)
+    const { user } = context
+    const [currentuser, setCurrentuser]=user
+// {console.log(currentuser)}
     return (
         <div className={styles.nav} >
             <div className={styles.navContainer} >
