@@ -9,11 +9,12 @@ import TextField from '@mui/material/TextField';
 import { async, jsonEval } from '@firebase/util';
 
 const Address = () => {
-    const { user, showNext } = useContext(Context)
+    const { user, showNext, mail } = useContext(Context)
     const [next, setNext] = showNext
     const [currentUser, setcurrentUser] = user
+    const [emailState, setEmailState]=mail
     const [addressDetails, setAddressDetails] = useState({
-        userEmail: currentUser,
+        userEmail: "",
         address: {
             postal: "",
             code: "",
@@ -48,7 +49,7 @@ const Address = () => {
         <div className={`${styles.addressContainer}`} >
             <h2 className={styles.h2} >ADDRESS</h2>
             {console.log(currentUser)}
-            {console.log(next)}
+            {console.log(emailState)}
             {/* mui inputs */}
             <div className={styles.flexAddress}>
 

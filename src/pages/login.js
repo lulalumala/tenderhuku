@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 import pic from '../pics/mkono.webp'
 import Image from 'next/image'
@@ -20,16 +20,21 @@ const Login = () => {
         userName: "",
         password: ""
     })
+    const context = useContext(Context)
+    const { user, mail } = context
+    const [currentUser, setcurrentUser] = user
     const [text, setText] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
-    // const [currentuser, setCurrentuser] = useState("")
+    const [emailState, setEmailState] = mail
 
     const router = useRouter()
 
+    
 
-    const context = useContext(Context)
-    const { user } = context
-    const [currentUser, setcurrentUser] = user
+    useEffect(() => {
+        console.log(emailState)
+
+    }, [emailState])
 
 
     const handleLogin = async (e) => {
@@ -46,20 +51,25 @@ const Login = () => {
                 body: JSON.stringify(loginUser)
             })
 
+
+
             const res = await connectBackend.json()
-            console.log(res)
+            // console.log(res)
             if (!res.userName) {
                 return setText(res.error)
             }
             if (res.userName) {
-                router.push("/home")
-                if (rememberMe) {
-                setcurrentUser(loginUser.userName)
-                localStorage.setItem("currentUser", JSON.stringify(loginUser.userName))
+                // router.push("/home")
+                console.log(res)
+                setEmailState(res.email)
+
+               if (rememberMe) {
+                    setcurrentUser(loginUser.userName)
+                    localStorage.setItem("currentUser", JSON.stringify(loginUser.userName))
                 }
+
             }
-            console.log(currentUser)
-            console.log(loginUser)
+            
         } catch (error) {
             setText(error)
         }
@@ -68,7 +78,6 @@ const Login = () => {
 
     return (
         <div>
-            {/* {console.log(text)} */}
             <Nav />
             <div className={styles.maindiv} >
                 <Image className={styles.pic} src={pic} alt='login pic' />
