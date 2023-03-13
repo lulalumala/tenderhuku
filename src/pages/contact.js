@@ -46,6 +46,53 @@ const Contact = () => {
 
                     <div className={styles.contactform} >
                         <form className={styles.form} >
+                            {/* mui */}
+                            <div>
+                                <p className={styles.error}>{text}</p>
+                                <Box
+                                    className={styles.box}
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '40ch' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div>
+                                        <TextField
+                                            className={styles.text}
+                                            id="standard-password-input"
+                                            label="Name"
+                                            type="text"
+                                            variant="standard"
+                                            onChange={(e) => (setAddressDetails(prev => ({ ...prev, address: { ...prev.address, physical: e.target.value } })))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            className={styles.text}
+                                            id="standard-password-input"
+                                            label="Email"
+                                            type="text"
+                                            variant="standard"
+                                            onChange={(e) => (setAddressDetails(prev => ({ ...prev, address: { ...prev.address, physical: e.target.value } })))}
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextField
+                                            className={styles.text}
+                                            id="standard-password-input"
+                                            label="Message"
+                                            type="text"
+                                            variant="standard"
+                                            onChange={(e) => (setAddressDetails(prev => ({ ...prev, address: { ...prev.address, physical: e.target.value } })))}
+                                        />
+                                    </div>
+
+
+                                </Box>
+                            </div> 
+
                             <input placeholder='NAME' type='text' className={styles.input} />
                             <input placeholder='EMAIL' type='text' className={styles.input} />
                             <textarea placeholder='MESSAGE' className={styles.textarea} />

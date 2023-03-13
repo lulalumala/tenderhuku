@@ -1,17 +1,16 @@
 import styles from './Address.module.css'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Context } from '@/states';
 
 
 // mui
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { async, jsonEval } from '@firebase/util';
 
 const Address = () => {
     const { user, showNext, mail } = useContext(Context)
     const [next, setNext] = showNext
-    const [currentUser, setcurrentUser] = user
+    const [currentUser, setCurrentUser] = user
     const [emailState, setEmailState]=mail
     const [addressDetails, setAddressDetails] = useState({
         userEmail: "",
@@ -27,7 +26,14 @@ const Address = () => {
 
     const [text, setText] = useState("")
 
+    const tester = () => {
+        setAddressDetails(prev => ({ ...prev, userEmail: currentUser.email }))
+        console.log(addressDetails)
+}
+    
+
     const nextButton = async () => {
+        setAddressDetails(prev => ({ ...prev, userEmail: currentUser.email }))
         if (!addressDetails.address.postal || !addressDetails.address.code || !addressDetails.address.physical || !addressDetails.address.phone || !addressDetails.address.email) {
             return setText("Fill all details")
         }
@@ -39,7 +45,7 @@ const Address = () => {
         })
 
         const res = await fetchData.json()
-        console.log(res)
+        // console.log(res)
         setNext(true)
         console.log(addressDetails)
     }
@@ -48,8 +54,8 @@ const Address = () => {
     return (
         <div className={`${styles.addressContainer}`} >
             <h2 className={styles.h2} >ADDRESS</h2>
-            {console.log(currentUser)}
-            {console.log(emailState)}
+            {console.log(addressDetails)}
+
             {/* mui inputs */}
             <div className={styles.flexAddress}>
 
@@ -126,7 +132,7 @@ const Address = () => {
                 </div>
 
                 <div>
-                    <button className={styles.button} onClick={() => console.log(addressDetails)} > NEXT</button></div>
+                    <button className={styles.button} onClick={() => tester()} > NEXT</button></div>
             </div>
         </div>
     )

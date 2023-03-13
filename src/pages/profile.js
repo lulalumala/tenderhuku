@@ -6,10 +6,13 @@ import { Context } from "@/states"
 import { useContext } from "react"
 
 const Profile = () => {
-    const { showNext } = useContext(Context)
+    const { showNext, mail, user } = useContext(Context)
     const [next, setNext] = showNext
+    const [emailState, setEmailState] = mail
+    const [currentUser, setCurrentUser] = mail
     return (
         <div>
+            {console.log(currentUser.email)}
             <Nav />
             <div className={styles.profile} >
                 {

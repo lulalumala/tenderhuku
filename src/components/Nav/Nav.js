@@ -5,25 +5,28 @@ import { useContext, useEffect } from 'react'
 import { Context } from '@/states'
 
 const Nav = () => {
-    useEffect(() => {
-        const savedUser = localStorage.getItem("currentUser")
-        savedUser && setCurrentuser(JSON.parse(savedUser))
-        
-    }, [])
-    
+
     const context = useContext(Context)
     const { user } = context
-    const [currentuser, setCurrentuser]=user
-// {console.log(currentuser)}
+    const [currentUser, setCurrentUser] = user
+
+    useEffect(() => {
+        const savedUser = localStorage.getItem("currentUser")
+        savedUser && setCurrentUser(JSON.parse(savedUser))
+        console.log(savedUser)
+
+    }, [])
+
     return (
         <div className={styles.nav} >
+            {console.log(`The current user is ${currentUser.email}`)}
             <div className={styles.navContainer} >
                 <div className={styles.logo} >
-                <Link href="/home"><p>Tendarize</p></Link>
+                    <Link href="/home"><p>Tendarize</p></Link>
                 </div>
                 <div className={styles.menu} >
                     <ul className={styles.ul} >
-                       <Link href="/about"><li>About Us</li></Link> 
+                        <Link href="/about"><li>About Us</li></Link>
                         {/* <li>Apply for tender</li>
                         <li>Advertise tender</li> */}
                         <Link href="/login">      <li> Login </li></Link>

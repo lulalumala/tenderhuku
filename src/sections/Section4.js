@@ -13,14 +13,14 @@ const Section4 = () => {
                 <p>INSTRUCTION TO TENDERERS</p>
 
                 <p>TENDERER INFORMATION FORM</p>
-                <input type="text" placeholder="Date of submission" />
-                <input type="text" placeholder="Tender name and identification" />
-                <input type="text" placeholder="Date of submission" />
-                <input type="text" placeholder="To" />
-                <input type="text" placeholder="Name of tenderer" />
-                <input type="text" placeholder="Name of person on behalf of tenderer" />
-                <input type="text" placeholder="Title" />
-                <input type="text" placeholder="Date" />
+                <input className={styles.section4input} type="text" placeholder="Date of submission" />
+                <input className={styles.section4input} type="text" placeholder="Tender name and identification" />
+                <input className={styles.section4input} type="text" placeholder="Date of submission" />
+                <input className={styles.section4input} type="text" placeholder="To" />
+                <input className={styles.section4input} type="text" placeholder="Name of tenderer" />
+                <input className={styles.section4input} type="text" placeholder="Name of person on behalf of tenderer" />
+                <input className={styles.section4input} type="text" placeholder="Title" />
+                <input className={styles.section4input} type="text" placeholder="Date" />
                 <ul>
                     <li>We have examined and have no reservations to the tendering document, including Addenda issued in accordance with Instructions to Tenderers (ITT8);</li>
                     <li>We meet the eligibility requirements and have no conﬂict of interest in accordance with ITT4;</li>
@@ -38,36 +38,36 @@ const Section4 = () => {
                 <h3>Instruction to Tenderer</h3>
                 <p>Tender is instructed to complete the particulars required in this Form, one form for each entity if Tender is a JV. Tenderer is further reminded that it is an offence to give false information on this Form.</p>
                 <p>a. Tenderer's details</p>
-                <table>
+                <table className={styles.table}>
                     <tr>
-                        <th></th>
-                        <th>ITEM</th>
-                        <th>DESCRIPTION</th>
+                        <th className={styles.td}> </th>
+                        <th className={styles.td}>ITEM</th>
+                        <th className={styles.td}>DESCRIPTION</th>
                     </tr>
                     <tr>
-                        <th>1</th>
-                        <th>Name of the Procuring Entity</th>
-                        <th></th>
+                        <th className={styles.td}>1</th>
+                        <th className={styles.td}>Name of the Procuring Entity</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>2</th>
-                        <th>Reference Number of the Tender</th>
-                        <th></th>
+                        <th className={styles.td}>2</th>
+                        <th className={styles.td}>Reference Number of the Tender</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>3</th>
-                        <th>Date and Time of Tender Opening</th>
-                        <th></th>
+                        <th className={styles.td}>3</th>
+                        <th className={styles.td}>Date and Time of Tender Opening</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>4</th>
-                        <th>Name of the Tenderer</th>
-                        <th></th>
+                        <th className={styles.td}>4</th>
+                        <th className={styles.td}>Name of the Tenderer</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>5</th>
-                        <th>Full Address and Contact Details of the Tenderer.</th>
-                        <th>
+                        <th className={styles.td}>5</th>
+                        <th className={styles.td}>Full Address and Contact Details of the Tenderer.</th>
+                        <th className={styles.td}>
                             <ol>
                                 <li>Country</li>
                                 <li>City</li>
@@ -80,30 +80,30 @@ const Section4 = () => {
                         </th>
                     </tr>
                     <tr>
-                        <th>6</th>
-                        <th>Current Trade License Registration Number and Expiring date</th>
-                        <th></th>
+                        <th className={styles.td}>6</th>
+                        <th className={styles.td}>Current Trade License Registration Number and Expiring date</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>7</th>
-                        <th>Name, country and full address (postal and physical addresses, email, and telephone number) of Registering Body/Agency.</th>
-                        <th></th>
+                        <th className={styles.td}>7</th>
+                        <th className={styles.td}>Name, country and full address (postal and physical addresses, email, and telephone number) of Registering Body/Agency.</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>8</th>
-                        <th>Description of Nature of Business</th>
-                        <th></th>
+                        <th className={styles.td}>8</th>
+                        <th className={styles.td}>Description of Nature of Business</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>9</th>
-                        <th>Maximum value of business which the Tenderer handles.</th>
-                        <th></th>
+                        <th className={styles.td}>9</th>
+                        <th className={styles.td}>Maximum value of business which the Tenderer handles.</th>
+                        <th className={styles.td}></th>
                     </tr>
                     <tr>
-                        <th>10</th>
-                        <th>State if Tenders Company is listed in stock exchange, give name and full address (postal and physical addresses, email, and telephone number) of
+                        <th className={styles.td}>10</th>
+                        <th className={styles.td}>State if Tenders Company is listed in stock exchange, give name and full address (postal and physical addresses, email, and telephone number) of
                             state which stock exchange</th>
-                        <th></th>
+                        <th className={styles.td}></th>
                     </tr>
                 </table>
                 <p>General and specific details</p>

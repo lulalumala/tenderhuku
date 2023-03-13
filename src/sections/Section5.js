@@ -8,7 +8,7 @@ const Section5 = () => {
     return (
         <div>
             {/* SCHEDULE OF REQUIREMENTS*/}
-           <h2>SCHEDULE OF REQUIREMENTS</h2>
+            <h2>SCHEDULE OF REQUIREMENTS</h2>
             <p>
                 The  Schedule  of  Requirements  shall  be  included  in  the  Tendering  document  by  the  Procuring  Entity,  and  shall  cover,  at  a  minimum,  a  description  of  the  goods  and  services  to  be  supplied  and  the  delivery  schedule.
             </p>
@@ -20,87 +20,85 @@ const Section5 = () => {
             </p>
 
 
-            <table>
+            <table className={styles.table} >
                 <tr>
-                    <th>Line ItemN</th>
-                    <th>Description of Goods </th>
-                    <th>Quantity</th>
-                    <th>Physical unit</th>
-                    <th>Final Destination as specified in TDS</th>
-                    <th>Delivery (as per Incoterms) Date</th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}>Line ItemN</th>
+                    <th className={styles.td}>Description of Goods </th>
+                    <th className={styles.td}>Quantity</th>
+                    <th className={styles.td}>Physical unit</th>
+                    <th className={styles.td}>Final Destination as specified in TDS</th>
+                    <th className={styles.td} colSpan={3} >Delivery (as per Incoterms) Date</th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
+                    <th className={styles.td}> </th>
                 </tr>
                 <tr>
-                    <th>[insert item No]</th>
-                    <th>[insert description of Goods]</th>
-                    <th>[insert quantity of item to be supplied]</th>
-                    <th>[insert physical unit for the quantity]</th>
-                    <th>[insert place of Delivery]</th>
-                    <th>[insert the number of days following the date of effectiveness the Contract]</th>
-                    <th>[insert the number of days following the date of effectiveness the Contract]</th>
-                    <th>[insert the number of days following the date of effectiveness the Contract]</th>
+                    <th className={styles.td}>[insert item No]</th>
+                    <th className={styles.td}>[insert description of Goods]</th>
+                    <th className={styles.td}>[insert quantity of item to be supplied]</th>
+                    <th className={styles.td}>[insert physical unit for the quantity]</th>
+                    <th className={styles.td}>[insert place of Delivery]</th>
+                    <th className={styles.td}>[insert the number of days following the date of effectiveness the Contract]</th>
+                    <th className={styles.td}>[insert the number of days following the date of effectiveness the Contract]</th>
+                    <th className={styles.td}>[insert the number of days following the date of effectiveness the Contract]</th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
                 </tr>
             </table>
             <p>List of Related Services and Completion Schedule</p>
             <table>
-            <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                <tr>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}><input type="text" className={styles.section5Input} /> </th>
+                    <th className={styles.td}> <input type="text" className={styles.section5Input} /></th>
                 </tr>
             </table>
         </div>

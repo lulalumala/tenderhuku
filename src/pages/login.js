@@ -20,16 +20,16 @@ const Login = () => {
         userName: "",
         password: ""
     })
-    const context = useContext(Context)
-    const { user, mail } = context
-    const [currentUser, setcurrentUser] = user
+
+    const { user, mail } = useContext(Context)
+    const [currentUser, setCurrentUser] = user
     const [text, setText] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
     const [emailState, setEmailState] = mail
 
     const router = useRouter()
 
-    
+
 
     useEffect(() => {
         console.log(emailState)
@@ -62,14 +62,16 @@ const Login = () => {
                 // router.push("/home")
                 console.log(res)
                 setEmailState(res.email)
+                console.log(res.email)
+                console.log(emailState)
 
-               if (rememberMe) {
-                    setcurrentUser(loginUser.userName)
-                    localStorage.setItem("currentUser", JSON.stringify(loginUser.userName))
-                }
+                //    if (rememberMe) {
+                setCurrentUser(loginUser.userName)
+                localStorage.setItem("currentUser", JSON.stringify(res))
+                // }
 
             }
-            
+
         } catch (error) {
             setText(error)
         }
