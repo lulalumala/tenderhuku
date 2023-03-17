@@ -57,6 +57,10 @@
   color: red;
 }
 
+.link{
+  color: var(--white);
+}
+
 .lbutton{
     background-color: var(--secondary-color);
     padding: 1em 2.5em;

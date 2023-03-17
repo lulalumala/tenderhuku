@@ -20,12 +20,15 @@ const Apply = () => {
         arrow2: false,
         arrow3: false,
         arrow4: false,
-        arrow5: false
+        arrow5: false,
+        arrow6: false,
+        arrow7: false
     })
 
     return (
         <div>
             <Nav />
+           
             <div className={styles.section} onClick={() => setExpand(prev => ({ ...prev, arrow: !prev.arrow }))}>
                 <p>SECTION I: INSTRUCTION TO TENDERERS </p>
                 <div className={styles.arrowdiv}  >
@@ -77,6 +80,8 @@ const Apply = () => {
             {expand.arrow5 && <div className={styles.section} >
                 <Section5 />
             </div>}
+            
+            
         </div>
     )
 }

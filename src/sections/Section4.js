@@ -108,11 +108,11 @@ const Section4 = () => {
                 </table>
                 <p>General and specific details</p>
                 <p>b. Sole Proprietor, provide the following details.</p>
-                <input type="text" placeholder="Name in full" />
-                <input type="text" placeholder="Age" />
-                <input type="text" placeholder="Nationality" />
-                <input type="text" placeholder="Country of origin" />
-                <input type="text" placeholder="Citizenship" />
+                <input className={styles.section4input} type="text" placeholder="Name in full" />
+                <input className={styles.section4input} type="text" placeholder="Age" />
+                <input className={styles.section4input} type="text" placeholder="Nationality" />
+                <input className={styles.section4input} type="text" placeholder="Country of origin" />
+                <input className={styles.section4input} type="text" placeholder="Citizenship" />
             </div>
         </div>
     )

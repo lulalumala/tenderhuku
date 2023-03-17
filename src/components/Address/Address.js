@@ -8,58 +8,62 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 const Address = () => {
-    const { user, showNext, mail } = useContext(Context)
+    const { user, showNext, mail, address } = useContext(Context)
     const [next, setNext] = showNext
     const [currentUser, setCurrentUser] = user
-    const [emailState, setEmailState]=mail
-    const [addressDetails, setAddressDetails] = useState({
-        userEmail: "",
-        address: {
-            postal: "",
-            code: "",
-            physical: "",
-            phone: "",
-            email: "",
-        }
-
-    })
+    const [addressDetails, setAddressDetails] = address
+    
+    
 
     const [text, setText] = useState("")
 
     const tester = () => {
         setAddressDetails(prev => ({ ...prev, userEmail: currentUser.email }))
-        console.log(addressDetails)
-}
-    
+        console.log(addressDetails.userEmail)
+    }
+
 
     const nextButton = async () => {
-        setAddressDetails(prev => ({ ...prev, userEmail: currentUser.email }))
-        if (!addressDetails.address.postal || !addressDetails.address.code || !addressDetails.address.physical || !addressDetails.address.phone || !addressDetails.address.email) {
-            return setText("Fill all details")
+        try {
+            if (!addressDetails.address.postal || !addressDetails.address.code || !addressDetails.address.physical || !addressDetails.address.phone || !addressDetails.address.email) {
+                return setText("Fill all details")
+            }
+
+            const fetchData = await fetch("http://localhost:3001/api/user/update/address", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(addressDetails)
+            })
+                .catch((error) => {
+                console.log(error)
+            })
+
+            const res = await fetchData.json()
+            if (res) {
+                setNext(true)
+                console.log(addressDetails)
+            }
+            
+
+            console.log(fetchData)
+            console.log(addressDetails)
+
+        } catch (err) {
+            console.log(err)
         }
-
-        const fetchData = await fetch("http://localhost:3001/api/user/update", {
-            method: "PATCH",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(addressDetails)
-        })
-
-        const res = await fetchData.json()
-        // console.log(res)
-        setNext(true)
-        console.log(addressDetails)
     }
 
 
     return (
         <div className={`${styles.addressContainer}`} >
             <h2 className={styles.h2} >ADDRESS</h2>
-            {console.log(addressDetails)}
+            
 
             {/* mui inputs */}
             <div className={styles.flexAddress}>
 
                 <div>
+                    {console.log(currentUser)}
                     <p className={styles.error}>{text}</p>
                     <Box
                         className={styles.box}
@@ -132,7 +136,7 @@ const Address = () => {
                 </div>
 
                 <div>
-                    <button className={styles.button} onClick={() => tester()} > NEXT</button></div>
+                    <button className={styles.button} onClick={() => nextButton()} > NEXT</button></div>
             </div>
         </div>
     )

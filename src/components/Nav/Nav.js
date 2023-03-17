@@ -7,12 +7,19 @@ import { Context } from '@/states'
 const Nav = () => {
 
     const context = useContext(Context)
-    const { user } = context
+    const { user, address } = context
     const [currentUser, setCurrentUser] = user
+    const [addressDetails, setAddressDetails] = address
+
 
     useEffect(() => {
-        const savedUser = localStorage.getItem("currentUser")
-        savedUser && setCurrentUser(JSON.parse(savedUser))
+        const savedUser = JSON.parse(localStorage.getItem("currentUser"))
+        if (savedUser) {
+            setCurrentUser(savedUser)
+            setAddressDetails(prev => ({ ...prev, userEmail: savedUser.email }))
+
+        }
+
         console.log(savedUser)
 
     }, [])

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState, useContext, useEffect } from 'react'
+import Link from 'next/link'
 
 import pic from '../pics/mkono.webp'
 import Image from 'next/image'
@@ -107,9 +108,7 @@ const Login = () => {
 
                     <button className={`${styles.lbutton} ${styles.button}`} onClick={handleLogin} >Login</button>
                     <button className={`${styles.sbutton} ${styles.button}`}>
-                        {/* <Link href="/signup"> */}
-                        Sign Up
-                        {/* </Link> */}
+                        <Link className={styles.link} href="/signup">Sign Up</Link>
                     </button>
                     <p className={styles.reset} >Forgot Password?</p>
                 </form>

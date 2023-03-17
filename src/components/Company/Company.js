@@ -8,7 +8,8 @@ import { ref, uploadString } from "firebase/storage";
 import { storage } from "../../firebase";
 import loader from "../../assets/load.gif"
 import { Context } from '@/states';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Company = () => {
     const [company, setCompany] = React.useState({
@@ -29,10 +30,13 @@ const Company = () => {
         licence: false
     })
 
-    const { showNext } = useContext(Context)
+    const { showNext, address } = useContext(Context)
     const [next, setNext] = showNext
+    const [text, setText] = useState("")
+    const [addressDetails, setAddressDetails] = address
 
 
+    const router = useRouter()
 
     const uploadImage = (e, destination) => {
         const file = e.target.files[0]
@@ -50,15 +54,17 @@ const Company = () => {
             if (destination === "Business Licence") {
                 setLoading(prev => ({ ...prev, licence: true }))
             }
+
+
             uploadString(storageRef, reader.result, 'data_url').then((snapshot) => {
                 // console.log('Uploaded a data_url string!');
-                destination === "logos" && setCompany(prev => ({ ...prev, logo: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` }))
+                destination === "logos" && setAddressDetails(prev => ({ ...prev, company: ({ ...prev.company, logo: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` }) }))
                 setLoading(prev => ({ ...prev, logo: false }))
 
-                destination === "Registration Certificate" && setCompany(prev => ({ ...prev, certificate: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` }))
+                destination === "Registration Certificate" && setAddressDetails(prev => ({ ...prev, company: { ...prev.company, certificate: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` } }))
                 setLoading(prev => ({ ...prev, certificate: false }))
 
-                destination === "Business Licence" && setCompany(prev => ({ ...prev, licence: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` }))
+                destination === "Business Licence" && setAddressDetails(prev => ({ ...prev, company: ({ ...prev.company, licence: `https://firebasestorage.googleapis.com/v0/b/tendarize-9ad09.appspot.com/o/logos%2F${file.name}?alt=media` }) }))
                 setLoading(prev => ({ ...prev, licence: false }))
             });
         }
@@ -68,13 +74,35 @@ const Company = () => {
         setNext(false)
     }
 
-    const completeButton = () => {
-        console.log(company)
+    const completeButton = async () => {
+        setAddressDetails(prev=>({...prev.company, profileComplete:true}))
+        try {
+            if (!addressDetails.company.logo || !addressDetails.company.certificate || !addressDetails.company.licence || !addressDetails.company.placeOfRegistration || !addressDetails.company.name) {
+                return setText("Enter all fields")
+            } else {
+                setText("")
+                const fetchData = await fetch("http://localhost:3001/api/user/update/company", {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(addressDetails)
+                })
+                const res = await fetchData.json()
+                
+                router.push("/home")
+                return console.log(addressDetails)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <div className={`${styles.company}`}>
             <h2 className={styles.h2} >COMPANY DETAILS</h2>
+            {text && <p>{text}</p>}
+
+
 
             {/* materialui ui inputs */}
             <Box
@@ -95,7 +123,7 @@ const Company = () => {
                         label="Company Name"
                         type="text"
                         variant="standard"
-                        onChange={(e) => setCompany(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) => setAddressDetails(prev => ({ ...prev, company: { ...prev.company, name: e.target.value } }))}
 
                     />
                 </div>
@@ -108,7 +136,7 @@ const Company = () => {
                         label="Place of registration"
                         type="text"
                         variant="standard"
-                        onChange={(e) => (setCompany(prev => ({ ...prev, place: e.target.value })))}
+                        onChange={(e) => (setAddressDetails(prev => ({ ...prev, company: { ...prev.company, placeOfRegistration: e.target.value } })))}
                     />
                 </div>
             </Box>
@@ -118,12 +146,12 @@ const Company = () => {
             <div className={styles.itemsDiv} >
                 {loading.logo ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-                        {company.logo !== "" && <p className={styles.p}>Company Logo</p>}
+                        {addressDetails.company.logo !== "" && <p className={styles.p}>Company Logo</p>}
                         <label htmlFor="logo" className={styles.label}
-                        > {company.logo !== "" ?
+                        > {addressDetails.company.logo !== "" ?
                             <div className={styles.picLabel} >
                                 {/* <p className={styles.p} >Company logo</p> */}
-                                <Image width={100} height={100} className={styles.randomPic} src={company.logo} alt="logo img"/>
+                                <Image width={100} height={100} className={styles.randomPic} src={addressDetails.company.logo} alt="logo img" />
                             </div> : <div className={styles.textLabel} > "Upload Company logo" <ImageIcon />
                             </div>}
                         </label>
@@ -140,14 +168,14 @@ const Company = () => {
             {/* <div className={styles.div} ><p>Power of Attorney</p> <input type='file' /></div> */}
 
             <div className={styles.itemsDiv} >
-                {loading.certificate ? <Image className={styles.loader} src={loader} alt="gif file"/> :
+                {loading.certificate ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-                        {company.certificate !== "" && <p className={styles.p}>Company Certificate</p>}
+                        {addressDetails.company.certificate !== "" && <p className={styles.p}>Company Certificate</p>}
                         <label htmlFor="cert" className={styles.label}>
-                            {company.certificate !== "" ?
+                            {addressDetails.company.certificate !== "" ?
                                 <div className={styles.picLabel} >
                                     {/* <p className={styles.p}>Registration Certificate</p> */}
-                                    <Image width={100} height={100} className={styles.randomPic} src={company.certificate} alt="certificate"/>
+                                    <Image width={100} height={100} className={styles.randomPic} src={addressDetails.company.certificate} alt="certificate" />
                                 </div> : <div className={styles.textLabel}>
                                     "Upload Registration Certificate"
                                     <ImageIcon />
@@ -158,18 +186,17 @@ const Company = () => {
                     </div>}
             </div>
 
+
+            {/* licence */}
             <div className={styles.itemsDiv} >
-                {loading.licence ? <Image className={styles.loader} src={loader} alt="gif file"/> :
+                {loading.licence ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-
-
-                        {company.licence !== "" && <p className={styles.p}>Company Certificate</p>}
+                        {addressDetails.company.licence !== "" && <p className={styles.p}>Company Certificate</p>}
 
                         <label htmlFor="licence" className={styles.label}>
-                            {company.licence !== "" ?
+                            {addressDetails.company.licence !== "" ?
                                 <div className={styles.picLabel} >
-                                    {/* <p className={styles.p}>Business License</p> */}
-                                    <Image width={100} height={100} className={styles.randomPic} src={company.licence} alt="licence"/>
+                                    <Image width={100} height={100} className={styles.randomPic} src={addressDetails.company.licence} alt="licence" />
                                 </div> :
                                 <div className={styles.textLabel}>"Upload Business License"
                                     <ImageIcon />
@@ -189,8 +216,7 @@ const Company = () => {
                 <button className={`${styles.button} ${styles.completeButton}`} onClick={completeButton}>COMPLETE</button>
             </div>
 
-            {/* <div className={styles.div} ><p>Principal place of Business</p> <input type='text' /></div> */}
-            {/* <div className={styles.div} ><p>Total annual volume</p> <input type='text' /></div> */}
+
 
         </div>
     )

@@ -3,7 +3,7 @@ import Nav from "@/components/Nav/Nav"
 import Image from "next/image"
 import styles from '../styles/Signup.module.css'
 import { useRouter } from 'next/router'
-
+import Link from 'next/link'
 
 // icons
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -185,7 +185,8 @@ const Signup = () => {
                         <label className={styles.label} >Remember me?</label>
                     </div>
                     <button className={`${styles.lbutton} ${styles.button}`} onClick={(e) => create(e)} >Sign Up</button>
-                    <button type='submit' className={`${styles.sbutton} ${styles.button}`}>Login</button>
+                    <button type='submit' className={`${styles.sbutton} ${styles.button}`}>
+                       <Link href="/login" className={styles.link}> Login</Link></button>
                     <p className={styles.reset} >Forgot Password?</p>
                 </form>
             </div>

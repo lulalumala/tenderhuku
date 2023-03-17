@@ -1,0 +1,11 @@
+.view{
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 0 5px var(--primary-color);
+    padding: 1.5em;
+}
+.title{
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--white);
+}

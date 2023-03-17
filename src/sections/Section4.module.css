@@ -8,3 +8,10 @@
 .td{
 border: 1px solid black;
 }
+.section4input{
+    display: block;
+    padding: .5em;
+    margin-top: .5em;
+    width: 60%;
+    outline: none;
+}
