@@ -75,7 +75,7 @@ const Company = () => {
     }
 
     const completeButton = async () => {
-        setAddressDetails(prev=>({...prev.company, profileComplete:true}))
+        setAddressDetails(prev => ({ ...prev, company: {...prev.company, profileComplete:true}}))
         try {
             if (!addressDetails.company.logo || !addressDetails.company.certificate || !addressDetails.company.licence || !addressDetails.company.placeOfRegistration || !addressDetails.company.name) {
                 return setText("Enter all fields")
@@ -146,7 +146,7 @@ const Company = () => {
             <div className={styles.itemsDiv} >
                 {loading.logo ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-                        {addressDetails.company.logo !== "" && <p className={styles.p}>Company Logo</p>}
+                        {addressDetails.company.logo && <p className={styles.p}>Company Logo</p>}
                         <label htmlFor="logo" className={styles.label}
                         > {addressDetails.company.logo !== "" ?
                             <div className={styles.picLabel} >
@@ -170,7 +170,7 @@ const Company = () => {
             <div className={styles.itemsDiv} >
                 {loading.certificate ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-                        {addressDetails.company.certificate !== "" && <p className={styles.p}>Company Certificate</p>}
+                        {addressDetails.company.certificate && <p className={styles.p}>Company Certificate</p>}
                         <label htmlFor="cert" className={styles.label}>
                             {addressDetails.company.certificate !== "" ?
                                 <div className={styles.picLabel} >
@@ -191,7 +191,7 @@ const Company = () => {
             <div className={styles.itemsDiv} >
                 {loading.licence ? <Image className={styles.loader} src={loader} alt="gif file" /> :
                     <div className={styles.div} >
-                        {addressDetails.company.licence !== "" && <p className={styles.p}>Company Certificate</p>}
+                        {addressDetails.company.licence && <p className={styles.p}>Company Certificate</p>}
 
                         <label htmlFor="licence" className={styles.label}>
                             {addressDetails.company.licence !== "" ?

@@ -14,7 +14,6 @@ import EmailIcon from '@mui/icons-material/Email';
 
 import DoneIcon from '@mui/icons-material/Done';
 
-
 // pic
 import pic2 from '../pics/mikono.webp'
 import { PostAdd, SettingsInputComponent } from '@mui/icons-material';
@@ -45,16 +44,12 @@ const Signup = () => {
     const specialChar = "!@#$%^&*()_+'?><,./`"
     const num = "0123456789"
 
-
     const validatemail = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
-
-
 
     const passwordInputSet = (e) => {
 
         const passwordInput = e.target.value
         console.log(passwordInput.length)
-
 
         // declare special chars in regex
         const numbers = new RegExp(/[0-9]/)
@@ -83,12 +78,8 @@ const Signup = () => {
         setNewUser(prev => ({ ...prev, password: passwordInput }))
     }
 
-
-
-
     const create = async (e) => {
         e.preventDefault()
-
 
         if (newUser.userName == "" || newUser.email == "" || newUser.password == "") {
             return setText("Please fill all details")
@@ -108,8 +99,6 @@ const Signup = () => {
             return setText("Enter a strong password")
         }
 
-
-
         if (newUser.password !== newUser.confirmPassword) { return setText("Passwords do not match") }
 
         if (!validatemail.test(newUser.email)) { return setText("Enter a valid email") }
@@ -122,16 +111,17 @@ const Signup = () => {
 
         const jsonUser = await addUser.json()
         if (jsonUser.userName) {
+            alert("Your account was successfully created")
             router.push("/login")
             localStorage.setItem("currentUser", JSON.stringify(newUser.userName))
 
-            console.log(`You are reistered`)
+            console.log(`You are registered`)
         }
         if (!jsonUser.ok) {
             setText(jsonUser.error)
         }
         console.log(jsonUser)
-
+        
     }
 
     return (

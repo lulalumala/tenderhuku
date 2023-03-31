@@ -22,8 +22,9 @@ const Login = () => {
         password: ""
     })
 
-    const { user, mail } = useContext(Context)
+    const { user, mail, userOn } = useContext(Context)
     const [currentUser, setCurrentUser] = user
+    const [userIn, setUserIn]= userOn
     const [text, setText] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
     const [emailState, setEmailState] = mail
@@ -68,7 +69,10 @@ const Login = () => {
 
                 //    if (rememberMe) {
                 setCurrentUser(loginUser.userName)
-                localStorage.setItem("currentUser", JSON.stringify(res))
+                const {password, ...others} = res
+                localStorage.setItem("currentUser", JSON.stringify(others))
+                router.push("/home")
+                setUserIn(true)
                 // }
 
             }

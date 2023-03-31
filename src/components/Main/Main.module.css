@@ -19,9 +19,18 @@
   padding: 1em;
   /* height: 60vh; */
 }
+.name{
+  color:var(--primary-color);
+}
 .p {
 color: var(--black);
   margin: 0.4em 0em;
+}
+.category{
+  color: var(--black)
+}
+.open{
+  color: var(--black)
 }
 .button {
   background-color: var(--secondary-color);
@@ -39,7 +48,7 @@ color: var(--black);
 
 .maincard {
   padding: 1em;
-  width: 22%;
+  /* width: 22%; */
   border: none;
   border-radius: 3px;
   /* background-color: #0da5f2; */

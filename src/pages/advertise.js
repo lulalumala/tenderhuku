@@ -1,39 +1,48 @@
 import styles from '../styles/Advertise.module.css'
 import Nav from '@/components/Nav/Nav'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 // mui
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-// sections
-import Section1 from '@/sections/Section1';
-import Section2 from '@/sections/Section2';
-import Section3 from '@/sections/Section3';
-import Section4 from '@/sections/Section4';
-import Section5 from '@/sections/Section5';
-
 const Advertise = () => {
-    const [expand, setExpand] = useState({
-        arrow: false,
-        arrow2: false,
-        arrow3: false,
-        arrow4: false,
-        arrow5: false
-    })
-
+    
     const [fields, setFields] = useState({
         referenceNo: "",
         tenderName: "",
+        category: "",
+        lots: "",
         tenderDescription: "",
         enquiryAddress: "",
         firmsProvidingConsultancy: "",
         JVmax: "",
         openingDate: "",
-        closingDate: ""
+        closingDate: "",
+        userId: "",
+        address: {},
+        company: {}
     })
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("currentUser"))
+        setFields(prev => ({ ...prev, userId: user._id }))
+        setFields(prev => ({ ...prev, address: user.address }))
+        setFields(prev=>({...prev, company: user.company}))
+                
+    }, [])
+    
+    const router=useRouter()
+
+    const advertiseButton = async() => {
+        const fetchData = await fetch("http://localhost:3001/api/user/tender/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(fields)
+
+        })  
+        console.log(fields)
+       router.push("/") 
+    }
 
     return (
         <div>
@@ -54,6 +63,17 @@ const Advertise = () => {
                         <TextField
                             className={styles.text}
                             id="standard-password-input"
+                            label="Category"
+                            type="text"
+                            variant="standard"
+                            onChange={(e) => (setFields(prev => ({ ...prev, category: e.target.value })))}
+                        />
+                    </div>
+
+                    <div>
+                        <TextField
+                            className={styles.text}
+                            id="standard-password-input"
                             label="Reference number"
                             type="text"
                             variant="standard"
@@ -69,6 +89,17 @@ const Advertise = () => {
                             type="text"
                             variant="standard"
                             onChange={(e) => setFields(prev => ({ ...prev, tenderName: e.target.value }))}
+                        />
+                    </div>
+
+                    <div>
+                        <TextField
+                            className={styles.text}
+                            id="standard-password-input"
+                            label="Number of lots"
+                            type="text"
+                            variant="standard"
+                            onChange={(e) => setFields(prev => ({ ...prev, lots: e.target.value }))}
                         />
                     </div>
 
@@ -126,7 +157,7 @@ const Advertise = () => {
                             label="Opening date"
                             type="text"
                             variant="standard"
-                            onChange={(e) => (setFields(prev => ({ ...prev, openingDate:  e.target.value  })))}
+                            onChange={(e) => (setFields(prev => ({ ...prev, openingDate: e.target.value })))}
                         />
                     </div>
 
@@ -143,7 +174,7 @@ const Advertise = () => {
 
                 </Box>
             </div>
-<button className={styles.button}  onClick={()=>console.log(fields)}>Publish</button>
+            <button className={styles.button} onClick={advertiseButton}>Publish</button>
 
 
         </div>
