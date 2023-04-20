@@ -40,6 +40,13 @@ const Address = () => {
 
             const res = await fetchData.json()
             if (res) {
+               // get user from local storage
+                const user = JSON.parse(localStorage.getItem("currentUser"))
+                if (user) {
+                    const updatedUser = { ...user, ...addressDetails }
+                  //  Update localstorage
+                    localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+                }
                 setNext(true)
                 console.log(addressDetails)
             }

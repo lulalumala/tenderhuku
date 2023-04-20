@@ -53,8 +53,6 @@ const Login = () => {
                 body: JSON.stringify(loginUser)
             })
 
-
-
             const res = await connectBackend.json()
             // console.log(res)
             if (!res.userName) {
@@ -63,6 +61,7 @@ const Login = () => {
             if (res.userName) {
                 // router.push("/home")
                 console.log(res)
+                console.log("1-2 mic")
                 setEmailState(res.email)
                 console.log(res.email)
                 console.log(emailState)

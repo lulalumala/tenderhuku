@@ -7,6 +7,7 @@ const States = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({})
     const [next, setNext] = useState()
     const [emailState, setEmailState] = useState("")
+    const [profileComplete, setProfileComplete]=useState(false)
     const [addressDetails, setAddressDetails] = useState({
         userEmail: "",
         address: {
@@ -43,9 +44,11 @@ const States = ({ children }) => {
 
     const [userIn, setUserIn]=useState(false)
 
+    const [allTenders, setAllTenders] = useState([])
+    const [tender, setTender]=useState({})
 
     return (
-        <Context.Provider value={{ user: [currentUser, setCurrentUser], address: [addressDetails, setAddressDetails], showNext: [next, setNext], mail: [emailState, setEmailState], currentItem: [items, setItems], userOn:[userIn, setUserIn] }}>
+        <Context.Provider value={{ user: [currentUser, setCurrentUser], address: [addressDetails, setAddressDetails], showNext: [next, setNext], tenders:[allTenders, setAllTenders],mail: [emailState, setEmailState], currentItem: [items, setItems], userOn:[userIn, setUserIn], profile: [profileComplete, setProfileComplete], tenderItem:[tender, setTender] }}>
             {children}
         </Context.Provider>
     )

@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 const Advertise = () => {
-    
+
     const [fields, setFields] = useState({
         referenceNo: "",
         tenderName: "",
@@ -23,25 +23,32 @@ const Advertise = () => {
         address: {},
         company: {}
     })
+
+    const [text, setText] = useState("")
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("currentUser"))
         setFields(prev => ({ ...prev, userId: user._id }))
         setFields(prev => ({ ...prev, address: user.address }))
-        setFields(prev=>({...prev, company: user.company}))
-                
-    }, [])
-    
-    const router=useRouter()
+        setFields(prev => ({ ...prev, company: user.company }))
 
-    const advertiseButton = async() => {
+    }, [])
+
+    const router = useRouter()
+
+    const advertiseButton = async () => {
+        if (fields.referenceNo == "" || fields.tenderName === "" || fields.category === "" || fields.lots === "" || fields.tenderDescription === "" || fields.enquiryAddress === "" || fields.firmsProvidingConsultancy === "" || fields.JVmax === "" || fields.openingDate === "" || fields.closingDate === "" || fields.userId === "") {
+            return setText("Fill in all details")
+        }
+
         const fetchData = await fetch("http://localhost:3001/api/user/tender/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(fields)
 
-        })  
+        })
         console.log(fields)
-       router.push("/") 
+        router.push("/")
     }
 
     return (
@@ -58,7 +65,7 @@ const Advertise = () => {
                     noValidate
                     autoComplete="off"
                 >
-
+                    <p className={styles.text} >{text} </p>
                     <div>
                         <TextField
                             className={styles.text}

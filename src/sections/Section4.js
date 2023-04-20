@@ -1,9 +1,23 @@
 import styles from "./Section4.module.css"
+import {useTenders, useTender} from "@/hooks"
+import { useContext } from "react"
+import { Context } from "@/states"
+
+import { useRouter } from 'next/router'
+
 
 
 
 
 const Section4 = () => {
+    const router = useRouter()
+    const {apply} = router.query
+    const context = useContext(Context)
+    const { tenders, tenderItem } = context
+    const [allTenders, setAllTenders] = tenders
+    const [tender, setTender] = tenderItem
+
+    useTender(apply)
     return (
         <div>
             {/* TENDERING FORMS */}
@@ -46,8 +60,9 @@ const Section4 = () => {
                     </tr>
                     <tr>
                         <th className={styles.td}>1</th>
-                        <th className={styles.td}>Name of the Procuring Entity</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}>Name of the Procuring Entity:</th>
+                        <th className={styles.td}>{ }</th>
+                        {console.log(tender !== undefined && tender.company.name)}
                     </tr>
                     <tr>
                         <th className={styles.td}>2</th>

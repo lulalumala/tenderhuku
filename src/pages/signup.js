@@ -105,8 +105,11 @@ const Signup = () => {
 
         const addUser = await fetch("http://localhost:3001/api/user/new", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json"},
             body: JSON.stringify(newUser)
+        })
+            .catch(err => {
+                return setText("Check your internet connection")
         })
 
         const jsonUser = await addUser.json()

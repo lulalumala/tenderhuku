@@ -6,7 +6,8 @@ import { Context } from "@/states"
 import { useContext } from "react"
 
 const Profile = () => {
-    const { showNext, mail, user } = useContext(Context)
+    const { showNext, mail, user, profile } = useContext(Context)
+    const [profileComplete, setProfileComplete]=profile
     const [next, setNext] = showNext
     const [emailState, setEmailState] = mail
     const [currentUser, setCurrentUser] = mail

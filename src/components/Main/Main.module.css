@@ -3,6 +3,19 @@
   padding: 1.5em 0;
 }
 
+.top{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: .5em;
+}
+
+.topim{
+  height: 30px;
+  border-radius: 5px;
+
+}
+
 .h2 {
   text-align: center;
   color: var(--primary-color);
@@ -45,6 +58,8 @@ color: var(--black);
   outline: none;
   width: 100%;
 }
+
+
 
 .maincard {
   padding: 1em;

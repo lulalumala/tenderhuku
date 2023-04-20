@@ -87,6 +87,15 @@ const Company = () => {
                     body: JSON.stringify(addressDetails)
                 })
                 const res = await fetchData.json()
+
+                if (res) {
+                    const user = JSON.parse(localStorage.getItem("currentUser"))
+                    if (user) {
+                        const updatedUser = { ...user, ...addressDetails }
+                      //  Update localstorage
+                        localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+                    }
+                }
                 
                 router.push("/home")
                 return console.log(addressDetails)
