@@ -1,8 +1,7 @@
 import styles from "./Section4.module.css"
-import {useTenders, useTender} from "@/hooks"
-import { useContext } from "react"
+import { useTenders, useTender } from "@/hooks"
+import { useContext, useEffect, useState } from "react"
 import { Context } from "@/states"
-
 import { useRouter } from 'next/router'
 
 
@@ -11,30 +10,42 @@ import { useRouter } from 'next/router'
 
 const Section4 = () => {
     const router = useRouter()
-    const {apply} = router.query
+    const { apply } = router.query
     const context = useContext(Context)
     const { tenders, tenderItem } = context
     const [allTenders, setAllTenders] = tenders
     const [tender, setTender] = tenderItem
+    const [tendereeData, setTendereeData] = useState([])
+
+    const { company } = tender;
+    const { company: tendereeCompany } = tendereeData;
+    // console.log(tendereeCompany.name )
+    useEffect(() => {
+        const data = () => {
+            const tenderee = JSON.parse(localStorage.getItem("currentUser"))
+            setTendereeData(tenderee)
+        }
+        data()
+    }, [])
 
     useTender(apply)
     return (
         <div>
+            {console.log(tendereeData)}
             {/* TENDERING FORMS */}
             <h2>TENDERING FORM</h2>
             <div>
                 <h3>Form of tender</h3>
                 <p>INSTRUCTION TO TENDERERS</p>
-
+                {console.log(tendereeData)}
                 <p>TENDERER INFORMATION FORM</p>
-                <input className={styles.section4input} type="text" placeholder="Date of submission" />
                 <input className={styles.section4input} type="text" placeholder="Tender name and identification" />
                 <input className={styles.section4input} type="text" placeholder="Date of submission" />
                 <input className={styles.section4input} type="text" placeholder="To" />
-                <input className={styles.section4input} type="text" placeholder="Name of tenderer" />
+                <input className={styles.section4input} type="text" placeholder="Name of tenderer" value={tendereeData.userName} />
                 <input className={styles.section4input} type="text" placeholder="Name of person on behalf of tenderer" />
-                <input className={styles.section4input} type="text" placeholder="Title" />
-                <input className={styles.section4input} type="text" placeholder="Date" />
+                <input className={styles.section4input} type="text" placeholder="Title"/>
+                <input className={styles.section4input} type="text" placeholder="Date"/>
                 <ul>
                     <li>We have examined and have no reservations to the tendering document, including Addenda issued in accordance with Instructions to Tenderers (ITT8);</li>
                     <li>We meet the eligibility requirements and have no conﬂict of interest in accordance with ITT4;</li>
@@ -61,53 +72,53 @@ const Section4 = () => {
                     <tr>
                         <th className={styles.td}>1</th>
                         <th className={styles.td}>Name of the Procuring Entity:</th>
-                        <th className={styles.td}>{ }</th>
-                        {console.log(tender !== undefined && tender.company.name)}
+                        <th className={styles.td}>{company && company.name}</th>
+                        {console.log(company && company.referenceNo)}
                     </tr>
                     <tr>
                         <th className={styles.td}>2</th>
                         <th className={styles.td}>Reference Number of the Tender</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}>{tender && tender.referenceNo}</th>
                     </tr>
                     <tr>
                         <th className={styles.td}>3</th>
                         <th className={styles.td}>Date and Time of Tender Opening</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}>{tender && tender.openingDate}</th>
                     </tr>
                     <tr>
                         <th className={styles.td}>4</th>
                         <th className={styles.td}>Name of the Tenderer</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}><input className={styles.input} placeholder="Name of tenderer" type="text" value={tendereeCompany !==undefined &&tendereeCompany.name} /> </th>
                     </tr>
                     <tr>
                         <th className={styles.td}>5</th>
                         <th className={styles.td}>Full Address and Contact Details of the Tenderer.</th>
                         <th className={styles.td}>
                             <ol>
-                                <li>Country</li>
-                                <li>City</li>
-                                <li>Location</li>
-                                <li>Building</li>
-                                <li>Floor</li>
-                                <li>Postal address</li>
-                                <li>Name and email of contact person</li>
+                                <li><input className={styles.input} placeholder="Country" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="City" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="Location" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="Building" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="Floor" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="Postal Address" type="text" /> </li>
+                                <li><input className={styles.input} placeholder="Contact Person" type="text" /> </li>
                             </ol>
                         </th>
                     </tr>
                     <tr>
                         <th className={styles.td}>6</th>
                         <th className={styles.td}>Current Trade License Registration Number and Expiring date</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}><input className={styles.input} placeholder="Reg. Number and Expiry date" type="text" /></th>
                     </tr>
                     <tr>
                         <th className={styles.td}>7</th>
                         <th className={styles.td}>Name, country and full address (postal and physical addresses, email, and telephone number) of Registering Body/Agency.</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}><input className={styles.input} placeholder="Reg. body/agency" type="text" /></th>
                     </tr>
                     <tr>
                         <th className={styles.td}>8</th>
                         <th className={styles.td}>Description of Nature of Business</th>
-                        <th className={styles.td}></th>
+                        <th className={styles.td}><input className={styles.input} placeholder="Nature of business" type="text" /></th>
                     </tr>
                     <tr>
                         <th className={styles.td}>9</th>

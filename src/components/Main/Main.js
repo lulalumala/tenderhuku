@@ -8,10 +8,13 @@ const Main = () => {
 const[tenders, setTenders]=useState([])
 
     useEffect(() => {
-        const getTenders = async() => {
-            const data = await fetch("http://localhost:3001/api/user/tenders")
-            const res = await data.json()
-            setTenders(res)
+        const getTenders = async () => {
+          
+                const data = await fetch("http://localhost:3001/api/user/tenders")
+                const res = await data.json()
+                                   setTenders(res)
+            
+            
         }
         getTenders()
     }, [])
@@ -36,7 +39,7 @@ return (
     <div className={styles.main} >
         <h2 className={styles.h2} >Active Tenders</h2>
         <div className={styles.main80} >
-            {tenders &&
+            {tenders.length !==undefined &&
                 tenders.map(items => {
                     return (
                         <div>

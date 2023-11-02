@@ -28,6 +28,7 @@ const Nav = () => {
 
     const handleLogout = () => {
         setUserIn(false)
+        localStorage.removeItem("currentUser")
 }
 
 

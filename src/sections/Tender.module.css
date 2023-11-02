@@ -1,0 +1,41 @@
+.tenderDiv{
+    border: 1px solid var(--primary-color);
+    margin: auto;
+    width: 60%;
+    border-radius: 5px;
+    padding: 1em;
+}
+.top{
+    display:flex;
+}
+.logo{
+    height: 50px;
+    border-radius: 5px;
+}
+
+.logoIm{
+    height: 100%;
+    border-radius: 5px;
+
+}
+.name{
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+.abutton{
+    background-color: var(--secondary-color);
+    padding: 1em 2.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1em;
+}
+.pbutton{
+    background-color: var(--primary-color);
+    padding: 1em 2.5em;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

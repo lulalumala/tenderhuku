@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import HomePage from './home'
 
-// import { Cont xext } from '@/states'
+// import { Context } from '@/states'
 
 const inter = Inter({ subsets: ['latin'] })
 

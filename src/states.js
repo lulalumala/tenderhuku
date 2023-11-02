@@ -44,7 +44,7 @@ const States = ({ children }) => {
 
     const [userIn, setUserIn]=useState(false)
 
-    const [allTenders, setAllTenders] = useState([])
+    const [allTenders, setAllTenders] = useState(null)
     const [tender, setTender]=useState({})
 
     return (

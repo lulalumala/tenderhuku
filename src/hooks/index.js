@@ -8,22 +8,29 @@ export const useTenders = async () => {
     const [allTenders, setAllTenders] = tenders
 
     useEffect(() => {
-       const fetchData = async () => {
-            const fetchTenders = await fetch("http://localhost:3001/api/user/tenders")
-            const res = await fetchTenders.json();
-            setAllTenders(res)
-            console.log(res)
+        const fetchData = async () => {
+            try {
+                const fetchTenders = await fetch("http://localhost:3001/api/user/tenders")
+                const res = await fetchTenders.json();
+                setAllTenders(res)
+                console.log(res)
+
+            } catch (error) {
+                console.log(error)
+            }
+
 
         }
         fetchData()
 
-    },[])
+    }, [])
 
 
 
 }
 
 export const useTender = (id) => {
+
     useTenders()
     const context = useContext(Context)
     const { tenders, tenderItem } = context
@@ -35,5 +42,7 @@ export const useTender = (id) => {
             setTender(item)
         }
     })
+
+
 
 }
